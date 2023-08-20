@@ -1,9 +1,26 @@
+import 'package:fifth_month/cubits/counter_cubit.dart';
+import 'package:fifth_month/cubits/math_cubit.dart';
+import 'package:fifth_month/cubits/tab_box_cubit.dart';
 import 'package:fifth_month/ui/home_screen/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() async {
-  runApp(MyApp());
+  runApp(App());
+}
+
+class App extends StatelessWidget {
+  const App({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiBlocProvider(providers: [
+      BlocProvider(create: (context) => CounterCubit()),
+      BlocProvider(create: (context) => TabBoxCubit()),
+      BlocProvider(create: (context)=>MathCubit()),
+    ], child: MyApp());
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -17,14 +34,13 @@ class MyApp extends StatelessWidget {
         splitScreenMode: true,
         minTextAdapt: true,
         builder: (BuildContext context, Widget? child) {
-      return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-            colorScheme: const ColorScheme.light(
-          primary: Colors.deepPurpleAccent
-        )),
-        home: HomeScreen(),
-      );
-    });
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: ThemeData(
+                colorScheme:
+                    const ColorScheme.light(primary: Colors.deepOrangeAccent)),
+            home: HomeScreen(),
+          );
+        });
   }
 }
