@@ -27,23 +27,23 @@ class _CounterScreenState extends State<CounterScreen> {
           );
         },
       ),
-      floatingActionButton: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: <Widget>[
-          FloatingActionButton(
-            key: const Key('counterView_increment_floatingActionButton'),
-            child: const Icon(Icons.add),
-            onPressed: () => context.read<CounterCubit>().increase(),
-          ),
-          const SizedBox(height: 8),
-          FloatingActionButton(
-            key: const Key('counterView_decrement_floatingActionButton'),
-            child: const Icon(Icons.remove),
-            onPressed: () => context.read<CounterCubit>().decrease(),
-          ),
-        ],
-      ),
+      // floatingActionButton: Column(
+      //   mainAxisAlignment: MainAxisAlignment.end,
+      //   crossAxisAlignment: CrossAxisAlignment.end,
+      //   children: <Widget>[
+      //     FloatingActionButton(
+      //       key: const Key('counterView_increment_floatingActionButton'),
+      //       child: const Icon(Icons.add),
+      //       onPressed: () => context.read<CounterCubit>().increase(),
+      //     ),
+      //     const SizedBox(height: 8),
+      //     FloatingActionButton(
+      //       key: const Key('counterView_decrement_floatingActionButton'),
+      //       child: const Icon(Icons.remove),
+      //       onPressed: () => context.read<CounterCubit>().decrease(),
+      //     ),
+      //   ],
+      // ),
     );
   }
 }
