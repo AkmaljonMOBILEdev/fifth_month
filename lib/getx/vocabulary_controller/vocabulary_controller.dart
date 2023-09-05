@@ -11,15 +11,23 @@ class VocabularyController extends GetxController{
 
   var isLoading = false.obs;
   RxList<MeaningModel> meanings = <MeaningModel>[].obs;
+  Rx<MeaningModel> theModel = MeaningModel(partOfSpeech: "", definitions: [], synonyms: [], antonyms: []).obs;
   Rx<String> errorText = "".obs;
+
+
   getMeaningOfWord(String word)async{
     isLoading.value = true;
     UniversalData data = await  apiService.getDefinition(word);
     debugPrint("GETX 1: ${data.data}");
     isLoading.value = false;
+
     if(data.error.isEmpty){
       debugPrint("GETX 2: ${data.data}");
-      meanings.value = data.data;
+      if(data.data is List){
+        meanings.value = data.data;
+      }else{
+        theModel = data.data[0];
+      }
       debugPrint("REAL IS: ${meanings}");
     }else{
       debugPrint("GETX ERROR: ${data.data[0]}");

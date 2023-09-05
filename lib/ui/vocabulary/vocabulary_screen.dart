@@ -22,22 +22,34 @@ class VocabularyScreen extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          ListView(
-            padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 20.h),
-            children: [
-              SearchWord(
-                controller: text,
-                onTap: (){
-                  debugPrint("WORD IS : ${text.text}");
-                  controller.getMeaningOfWord(text.text);
-              }, ),
-              // controller.meanings.isNotEmpty
-              // ?Obx(() {
-              //   return Text(controller.meanings[0].partOfSpeech, style: TextStyle(
-              //     color: Colors.black, fontSize: 20.sp
-              //   ),);
-              // }):SizedBox()
-            ],
+          SingleChildScrollView(
+            child: Column(
+              children: [
+                SearchWord(
+                  controller: text,
+                  onTap: () {
+                    debugPrint("WORD IS : ${text.text}");
+                    controller.getMeaningOfWord(text.text);
+                    debugPrint("mean: ${controller.meanings[0].partOfSpeech}");
+                  },
+                ),
+                // Obx(
+                //   () => SizedBox(
+                //     height: 500,
+                //     child: ListView.builder(
+                //       itemCount: controller.meanings.length,
+                //       itemBuilder: (context, index) {
+                //         final meaning = controller.meanings[index];
+                //         return ListTile(
+                //           title: Text("THE WORD IS: ${meaning.partOfSpeech}", style: TextStyle(color: Colors.black, fontSize: 20),),
+                //           // You can display other data fields here if needed
+                //         );
+                //       },
+                //     ),
+                //   ),
+                // )
+              ],
+            ),
           ),
           Obx(() {
             return Visibility(
