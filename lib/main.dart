@@ -1,6 +1,8 @@
 import 'package:fifth_month/ui/home_screen/home_screen.dart';
+import 'package:fifth_month/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 void main() async {
   runApp(MyApp());
@@ -17,11 +19,11 @@ class MyApp extends StatelessWidget {
         splitScreenMode: true,
         minTextAdapt: true,
         builder: (BuildContext context, Widget? child) {
-      return MaterialApp(
+      return GetMaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
             colorScheme: const ColorScheme.light(
-          primary: Colors.deepPurpleAccent
+          primary: Colors.blue
         )),
         home: HomeScreen(),
       );
