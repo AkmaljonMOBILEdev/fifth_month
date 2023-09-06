@@ -1,5 +1,3 @@
-import 'package:fifth_month/data/models/universal_data.dart';
-import 'package:fifth_month/data/network/api_service.dart';
 import 'package:fifth_month/ui/math/math_screen.dart';
 import 'package:fifth_month/ui/vocabulary/vocabulary_screen.dart';
 import 'package:flutter/material.dart';

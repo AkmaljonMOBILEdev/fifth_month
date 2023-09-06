@@ -1,3 +1,4 @@
+import 'package:fifth_month/data/models/meaning_model/main_model.dart';
 import 'package:fifth_month/data/models/universal_data.dart';
 import 'package:fifth_month/data/network/api_service.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,29 +11,24 @@ class VocabularyController extends GetxController{
   VocabularyController({required this.apiService});
 
   var isLoading = false.obs;
-  RxList<MeaningModel> meanings = <MeaningModel>[].obs;
-  Rx<MeaningModel> theModel = MeaningModel(partOfSpeech: "", definitions: [], synonyms: [], antonyms: []).obs;
+  RxList<MainModel> meanings = <MainModel>[].obs;
+  // Rx<MeaningModel> theModel = MeaningModel(partOfSpeech: "", definitions: [], synonyms: [], antonyms: []).obs;
   Rx<String> errorText = "".obs;
 
 
   getMeaningOfWord(String word)async{
     isLoading.value = true;
-    UniversalData data = await  apiService.getDefinition(word);
-    debugPrint("GETX 1: ${data.data}");
+    List<MainModel> loadedWord = await apiService.getDefinition(word);
     isLoading.value = false;
+    if(loadedWord.isNotEmpty){
+      // debugPrint("AAA: $loadedWord");
+      meanings.value = loadedWord;
+      // debugPrint("AAA: ${meanings.first.partOfSpeech}");
 
-    if(data.error.isEmpty){
-      debugPrint("GETX 2: ${data.data}");
-      if(data.data is List){
-        meanings.value = data.data;
-      }else{
-        theModel = data.data[0];
-      }
-      debugPrint("REAL IS: ${meanings}");
     }else{
-      debugPrint("GETX ERROR: ${data.data[0]}");
-      errorText.value = data.error;
+      Get.snackbar("Dictionary", "$word is not found!");
     }
+
   }
 
 }

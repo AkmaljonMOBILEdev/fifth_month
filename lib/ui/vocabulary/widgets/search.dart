@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
 class SearchWord extends StatelessWidget {
-  const SearchWord({super.key, required this.onTap, required this.controller, });
+  const SearchWord({super.key, required this.onTap, required this.controller });
   final VoidCallback onTap;
   final TextEditingController controller;
   // final ValueChanged<String> onChanged;
@@ -30,6 +30,8 @@ class SearchWord extends StatelessWidget {
           SizedBox(
             width: (size.width / 1.17)-40,
             child: TextField(
+              keyboardType: TextInputType.text,
+              textInputAction: TextInputAction.done,
               // onChanged: onChanged,
               controller: controller,
               decoration: InputDecoration(
